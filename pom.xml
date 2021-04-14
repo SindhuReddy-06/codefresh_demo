@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mycompany</groupId>
+	<groupId>354ef907-efb6-4178-98e3-dac687a14eb7</groupId>
 	<artifactId>connector-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-application</packaging>
@@ -24,14 +24,30 @@
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.0.0</version>
 			</plugin>
+			
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
+					<cloudHubDeployment>
+				      <muleVersion>4.3.0</muleVersion>
+				      <username>sindhuapril2021</username>
+				      <password>Sindhu123$</password>
+				      <applicationName>connector-demo</applicationName>
+				      <environment>Sandbox</environment>
+				      <workers>1</workers>
+				      <workerType>MICRO</workerType>
+				      <properties>
+					    <maven.compiler.target>1.8</maven.compiler.target>
+					    <maven.compiler.source>1.8</maven.compiler.source>
+					</properties>
+						<objectStoreV2>true</objectStoreV2>
+					</cloudHubDeployment>
 				</configuration>
 			</plugin>
+			
 		</plugins>
 	</build>
 
@@ -118,6 +134,15 @@
             <layout>default</layout>
         </repository>
     </repositories>
+    <distributionManagement>
+        <!-- Target Anypoint Organization Repository -->
+        <repository>
+            <id>Repository</id>
+            <name>Repository</name>
+            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/${project.groupId}/maven</url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
     <pluginRepositories>
         <pluginRepository>
             <id>mulesoft-releases</id>
