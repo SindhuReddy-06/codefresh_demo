@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:module-logging="http://www.mulesoft.org/schema/mule/module-logging"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/module-logging http://www.mulesoft.org/schema/mule/module-logging/current/mule-module-logging.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="02899b08-6a2f-485a-a780-d0b0487a5f2c" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="670a7603-e654-4e8b-af48-4736504b7e82" file="dev.yaml" />
+	<global-property doc:name="Global Property" doc:id="9a6da526-b43d-4c4f-8efa-2a1f7610ff9d" name="key" value="loggly" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="8043f3da-ced5-4021-b311-2a459eb9414b" file="dev.yaml" key="${key}" >
+		<secure-properties:encrypt algorithm="Blowfish" />
+	</secure-properties:config>
+	<http:request-config name="Loggly_HTTP_Config" doc:name="HTTP Request configuration" doc:id="91d818b4-e0e1-47ac-ba7b-7aa671a7756d" >
+		<http:request-connection host="${logglyConfig.host}" port="${logglyConfig.port}" />
+	</http:request-config>
+	<flow name="connector-demoFlow" doc:id="36f616fb-f249-48e9-aead-f1d9369b3e6e" >
+		<http:listener doc:name="Listener" doc:id="232265ce-e2fe-47f2-86b4-edce25431052" config-ref="HTTP_Listener_config" path="/log"/>
+		<module-logging:log-entry doc:name="Log entry" doc:id="96efe72e-5cb8-45e5-87a3-fba5ba690a80" message="success" messageType="info" source="sorce" correlationId="correlationid" process="app.name"/>
+	</flow>
+</mule>

@@ -1,0 +1,20 @@
+maskValues: "ssn,lastName"
+
+logglyConfig:
+  protocol: "HTTP"
+  host: "logs-01.loggly.com"
+  authToken: "![vjKAo2phtSTxVLjzhqS3/9GREuJiDbwXq/JxqeGnr9SqElv6mNAEKA==]"
+  port: ""
+  basepath: "/inputs/"
+  uri: "/tag/http"      
+  retryCount: "3"
+  retryIntervalInMilliseconds: "60000"
+
+loggingFramework:
+  logTo:
+    info: "loggly,default"
+    debug: "loggly,default"
+    warn: "loggly,default"
+    fatal: "loggly,default"
+    error: "loggly,default"
+    "trace": "loggly,default"
