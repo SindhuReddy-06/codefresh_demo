@@ -83,9 +83,9 @@
             <classifier>mule-plugin</classifier>
         </dependency>
     	<dependency>
-            <groupId>ace29594-5ad3-47dc-a811-d922df414234</groupId>
+            <groupId>354ef907-efb6-4178-98e3-dac687a14eb7</groupId>
             <artifactId>apisero-generic-logging-connector</artifactId>
-            <version>2.0.1</version>
+            <version>2.0.2</version>
             <classifier>mule-plugin</classifier>
         </dependency>
     	<dependency>
